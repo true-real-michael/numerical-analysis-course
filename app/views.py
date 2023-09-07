@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash
 
 import task1
 
@@ -16,5 +16,9 @@ def task1_handler():
     left_bound = request.form.get("left_bound", "")
     right_bound = request.form.get("right_bound", "")
 
-    result = task1.solve(function, left_bound, right_bound)
+    try:
+        result = task1.solve(function, left_bound, right_bound)
+    except Exception as e:
+        result = ""
+        flash(str(e))
     return render_template("task1.html", submitted_text=result)
