@@ -9,7 +9,7 @@ from .approximation import (
     FixedPointIterationApproximation,
     NewtonApproximation,
 )
-from .zeros_of import bisection_approximation, approximate_zeros
+from .approximate_zeros import bisection_approximation, approximate_zeros
 
 
 @dataclasses.dataclass
