@@ -42,7 +42,7 @@ class Approximation(abc.ABC):
         return sp.N(self._value)
 
     @abc.abstractmethod
-    def _step(self):
+    def _step(self) -> sp.Number:
         pass
 
     def _solve(self):
