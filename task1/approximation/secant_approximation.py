@@ -13,7 +13,9 @@ class SecantApproximation(Approximation):
         x = self._value
         x_prev = self.value_prev
         f = self.function
-        new_value = x - f.subs(x_sym, x) / (f.subs(x_sym, x) - f.subs(x_sym, x_prev)) * (x - x_prev)
+        new_value = x - f.subs(x_sym, x) / (
+            f.subs(x_sym, x) - f.subs(x_sym, x_prev)
+        ) * (x - x_prev)
         self.value_prev = x
         return new_value
 

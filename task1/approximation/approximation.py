@@ -14,14 +14,16 @@ class Approximation(abc.ABC):
     function: sp.Function
 
     def __init__(
-            self,
-            left: sp.Number,
-            right: sp.Number,
-            eps: sp.Number,
-            function: sp.Function,
+        self,
+        left: sp.Number,
+        right: sp.Number,
+        eps: sp.Number,
+        function: sp.Function,
     ):
         if right < left:
-            raise ValueError('the left border of domain must be less than the right border')
+            raise ValueError(
+                "the left border of domain must be less than the right border"
+            )
         self.left = left
         self.right = right
         self._value = (right + left) / 2
