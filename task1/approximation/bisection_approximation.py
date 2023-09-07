@@ -1,10 +1,10 @@
 import sympy as sp
 from sympy.abc import x as x_sym
 
-from .approximation import Approximation
+from .base_approximation import BaseApproximation
 
 
-class BisectionApproximation(Approximation):
+class BisectionApproximation(BaseApproximation):
     def _step(self) -> sp.Number:
         pass
 
@@ -20,6 +20,6 @@ class BisectionApproximation(Approximation):
                 right = mid
             else:
                 left = mid
-                
+
         self._value = (left + right) / 2
 

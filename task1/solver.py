@@ -8,7 +8,7 @@ def solve(function: str, left: str, right: str):
 
     try:
         function = sp.parsing.sympy_parser.parse_expr(function)
-        assert isinstance(function, sp.Function)
+        # assert isinstance(function, sp.Function)
     except Exception:
         raise ValueError("could not parse function")
 

@@ -1,29 +1,55 @@
 import sympy as sp
+import dataclasses
 
-from .approximation.newton_approximation import NewtonApproximation
-from .approximation.secant_approximation import SecantApproximation
-from .approximation.chord_approximation import ChordApproximation
-from .approximation.fixed_point_iteration_approximation import (
+from .approximation import (
+    BaseApproximation,
+    BisectionApproximation,
+    ChordApproximation,
+    SecantApproximation,
     FixedPointIterationApproximation,
+    NewtonApproximation,
 )
 from .zeros_of import bisection_approximation, approximate_zeros
+
+
+@dataclasses.dataclass
+class ApproximationCollection:
+    left: float
+    right: float
+    approximations: dict[str, BaseApproximation]
+
+    def __repr__(self):
+        val = f"[{self.left}, {self.right}]\n"
+        for method_name in self.approximations:
+            val += f"\t{method_name}: {self.approximations[method_name].value}\n"
+        val += "\n"
+        return val
 
 
 def pipeline(
     function: sp.Function,
     left: sp.Number,
     right: sp.Number,
+    n_divisions: int = 20,
+    eps: float = 0.001,
 ):
     ans = []
 
-    possible_zeros = approximate_zeros(function, left, right, sp.Number(100))
-    for local_left, local_right in possible_zeros:
-        local_left, local_right = bisection_approximation(
-            function, local_left, local_right, sp.Number(0.01)
-        )
-        approx = FixedPointIterationApproximation(
-            local_left, local_right, 0.0001, function
-        ).value
-        ans.append(approx)
+    methods = {
+        "Bisection Approximation": BisectionApproximation,
+        "Chord Approximation": ChordApproximation,
+        "Secant Approximation": SecantApproximation,
+        "Fixed PointIteration Approximation": FixedPointIterationApproximation,
+        "Newton Approximation": NewtonApproximation,
+    }
+
+    for left, right in approximate_zeros(function, left, right, sp.Number(n_divisions)):
+        new_approx = ApproximationCollection(left, right, {})
+        for method_name in methods:
+            method = methods[method_name]
+            new_approx.approximations[method_name] = method(
+                function, left, right, sp.Number(eps)
+            )
+        ans.append(new_approx)
 
     return ans
