@@ -3,10 +3,10 @@ from typing import Optional
 import sympy as sp
 from sympy.abc import x as x_sym
 
-from .approximation import Approximation
+from .base_approximation import BaseApproximation
 
 
-class SecantApproximation(Approximation):
+class SecantApproximation(BaseApproximation):
     value_prev: Optional[sp.Number] = None
 
     def _step(self) -> sp.Number:

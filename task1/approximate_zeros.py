@@ -29,21 +29,3 @@ def approximate_zeros(
         x2 = x2 + h
 
     return ans
-
-
-def bisection_approximation(
-        f: sp.Function,
-        left: sp.Number,
-        right: sp.Number,
-        eps: sp.Number
-) -> tuple[sp.Number, sp.Number]:
-
-    while right - left > 2 * eps:
-        mid = (left + right) / 2
-
-        if f.subs(x_sym, mid) * f.subs(x_sym, left) <= 0:
-            right = mid
-        else:
-            left = mid
-
-    return left, right

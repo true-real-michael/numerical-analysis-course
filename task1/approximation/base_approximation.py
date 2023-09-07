@@ -5,7 +5,7 @@ from typing import Optional
 import sympy as sp
 
 
-class Approximation(abc.ABC):
+class BaseApproximation(abc.ABC):
     n_steps: int = 0
     _value: Optional[sp.Number]
     left: sp.Number
@@ -15,10 +15,10 @@ class Approximation(abc.ABC):
 
     def __init__(
         self,
+        function: sp.Function,
         left: sp.Number,
         right: sp.Number,
         eps: sp.Number,
-        function: sp.Function,
     ):
         if right < left:
             raise ValueError(
