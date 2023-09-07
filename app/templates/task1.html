@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Root Approximation{% endblock %}
+
+{% block content %}
+
+    <h3>Enter a function and bounds</h3>
+    <form action="task1.html" method="POST">
+        <input type="text" name="function" placeholder="2*sin(x) + cos(x)" required>
+        <input type="number" name="left_bound" placeholder="-1.5" required>
+        <input type="number" name="right_bound" placeholder="2" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="display_div">
+        {{ submitted_text }}
+    </div>
+
+
+{% endblock %}
