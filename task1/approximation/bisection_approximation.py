@@ -22,4 +22,3 @@ class BisectionApproximation(BaseApproximation):
                 left = mid
 
         self._value = (left + right) / 2
-
