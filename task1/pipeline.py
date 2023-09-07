@@ -21,7 +21,9 @@ class ApproximationCollection:
     def __repr__(self):
         val = f"[{self.left}, {self.right}]\n"
         for method_name in self.approximations:
-            val += f"\t{method_name}: {self.approximations[method_name].value}\n"
+            val += (f"{method_name}:\n"
+                    f"\tvalue: {self.approximations[method_name].value}\n"
+                    f"\tsteps: {self.approximations[method_name].n_steps}\n")
         val += "\n"
         return val
 
