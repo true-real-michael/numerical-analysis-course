@@ -8,17 +8,19 @@ from .base_approximation import BaseApproximation
 
 class SecantApproximation(BaseApproximation):
     value_prev: Optional[sp.Number] = None
+    method_name = "Secant Appoximation"
 
     def _step(self) -> sp.Number:
-        x = self._value
-        x_prev = self.value_prev
+        x = self.value
+        x_prev = self.approximation_values[-2]
         f = self.function
         new_value = x - f.subs(x_sym, x) / (
             f.subs(x_sym, x) - f.subs(x_sym, x_prev)
         ) * (x - x_prev)
-        self.value_prev = x
         return new_value
 
     def _solve(self):
-        self.value_prev = self.right if self.value != self.right else self.left
+        self.approximation_values.insert(
+            0, self._right if self.value != self._right else self._left
+        )
         super()._solve()
