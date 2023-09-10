@@ -6,7 +6,7 @@ from .base_approximation import BaseApproximation
 
 class ChordApproximation(BaseApproximation):
     def _step(self) -> sp.Number:
-        x = self._value
+        x = self.value
         f = self.function
         return (
             x

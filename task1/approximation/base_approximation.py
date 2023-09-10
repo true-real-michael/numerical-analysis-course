@@ -7,11 +7,12 @@ import sympy as sp
 
 class BaseApproximation(abc.ABC):
     n_steps: int = 0
-    _value: Optional[sp.Number]
     left: sp.Number
     right: sp.Number
     eps: sp.Number
     function: sp.Function
+    residual: sp.Number
+    approximation_values: list[sp.Number]
 
     def __init__(
         self,
@@ -26,7 +27,7 @@ class BaseApproximation(abc.ABC):
             )
         self.left = left
         self.right = right
-        self._value = (right + left) / 2
+        self.approximation_values = [(right + left) / 2]
         self.eps = eps
         self.function = function
 
@@ -37,11 +38,11 @@ class BaseApproximation(abc.ABC):
 
     @property
     def is_valid(self):
-        return self.left <= self._value <= self.right
+        return self.left <= self.value <= self.right
 
     @property
     def value(self):
-        return sp.N(self._value)
+        return sp.N(self.approximation_values[-1])
 
     @abc.abstractmethod
     def _step(self) -> sp.Number:
@@ -50,8 +51,8 @@ class BaseApproximation(abc.ABC):
     def _solve(self):
         new_value = self._step()
         self._inc_steps()
-        while abs(new_value - self._value) > self.eps:
-            self._value = new_value
+        while abs(new_value - self.value) > self.eps:
+            self.approximation_values.append(new_value)
             new_value = self._step()
             self._inc_steps()
-        self._value = new_value
+        self.approximation_values.append(new_value)
