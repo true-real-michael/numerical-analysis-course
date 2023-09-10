@@ -8,6 +8,7 @@ from .base_approximation import BaseApproximation
 
 class SecantApproximation(BaseApproximation):
     value_prev: Optional[sp.Number] = None
+    method_name = "Secant Appoximation"
 
     def _step(self) -> sp.Number:
         x = self.value
@@ -20,6 +21,6 @@ class SecantApproximation(BaseApproximation):
 
     def _solve(self):
         self.approximation_values.insert(
-            0, self.right if self.value != self.right else self.left
+            0, self._right if self.value != self._right else self._left
         )
         super()._solve()

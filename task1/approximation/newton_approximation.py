@@ -5,6 +5,8 @@ from .base_approximation import BaseApproximation
 
 
 class NewtonApproximation(BaseApproximation):
+    method_name = "Newton Approximation"
+
     def _step(self) -> sp.Number:
         x = self.value
         f = self.function

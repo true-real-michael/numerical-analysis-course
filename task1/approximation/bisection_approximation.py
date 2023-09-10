@@ -5,12 +5,13 @@ from .base_approximation import BaseApproximation
 
 
 class BisectionApproximation(BaseApproximation):
+    method_name = "Bisection Approximation"
     def _step(self) -> sp.Number:
         pass
 
     def _solve(self):
-        left = self.left
-        right = self.right
+        left = self._left
+        right = self._right
         f = self.function
 
         while right - left > 2 * self.eps:
