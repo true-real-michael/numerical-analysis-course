@@ -1,10 +1,10 @@
-import Layout from "@/components/common/Layout/Layout";
-import Title from "@/components/common/Title/Title";
 import { useState } from "react";
 import getConfig from "next/config";
 import { Task1Type } from "../types/task1Type";
 import Output from "../components/task1/Output/Output";
 import InputGroup from "../components/task1/InputGruop/InputGroup";
+import Layout from "../components/common/Layout/Layout";
+import Title from "../components/common/Title/Title";
 
 export default function Home() {
     const [inputFunction, setInputFunction] = useState<string>();
@@ -17,7 +17,7 @@ export default function Home() {
     const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
     const calculate = async () => {
-        const url = `${publicRuntimeConfig.BASE_API_URL}/task1_endpoint/${inputFunction}&${leftBound}&${rightBound}`;
+        const url = `${publicRuntimeConfig.BASE_API_URL}/task1_endpoint/${inputFunction}&${leftBound}&${rightBound}&${N}&${epsilon}`;
         try {
             setIsLoading(true);
             const response = await fetch(url, {

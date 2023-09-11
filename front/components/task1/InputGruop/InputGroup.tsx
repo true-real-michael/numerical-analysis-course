@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./InputGroup.module.scss";
-import Input from "@/components/common/Input/Input";
-import Button from "@/components/common/Button/Button";
+import Input from "../../common/Input/Input";
+import Button from "../../common/Button/Button";
 
 type Props = {
     inputFunction: string | undefined;
