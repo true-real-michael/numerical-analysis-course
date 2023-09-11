@@ -42,8 +42,8 @@ def pipeline(
     function: sp.Function,
     left: sp.Number,
     right: sp.Number,
-    n_divisions: int = 20,
-    eps: float = 0.001,
+    n_divisions: int,
+    eps: float,
 ):
     ans = []
 
