@@ -23,11 +23,13 @@ def task1_handler():
         flash(str(e))
     return render_template("task1.html", submitted_text=result)
 
-@views.route("/task1_endpoint/<function>&<left_bound>&<right_bound>")
-def task_1endpoint(function, left_bound, right_bound):
 
+@views.route(
+    "/task1_endpoint/<function>&<left_bound>&<right_bound>&<n_divisions>&<eps>"
+)
+def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
     try:
-        result = task1.solve(function, left_bound, right_bound)
+        result = task1.solve(function, left_bound, right_bound, n_divisions, eps)
     except Exception as e:
         result = {"error": str(e)}
         flash(str(e))
