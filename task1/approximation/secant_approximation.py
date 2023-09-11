@@ -24,3 +24,4 @@ class SecantApproximation(BaseApproximation):
             0, self._right if self.value != self._right else self._left
         )
         super()._solve()
+        self.approximation_values.pop(0)
