@@ -1,8 +1,11 @@
 import sympy as sp
+
 from .pipeline import pipeline
 
 
-def solve(function: str, left: str, right: str):
+def solve(
+    function: str, left: str, right: str, n_divisions: str = "20", eps: str = "0.001"
+):
     if not function:
         return ""
 
@@ -12,5 +15,5 @@ def solve(function: str, left: str, right: str):
     except Exception:
         raise ValueError("could not parse function")
 
-    result = pipeline(function, int(left), int(right))
+    result = pipeline(function, int(left), int(right), int(n_steps), float(eps))
     return str(result)
