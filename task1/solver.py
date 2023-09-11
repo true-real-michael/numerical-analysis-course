@@ -15,5 +15,6 @@ def solve(
     except Exception:
         raise ValueError("could not parse function")
 
-    result = pipeline(function, int(left), int(right), int(n_steps), float(eps))
+
+    result = pipeline(function, int(left), int(right), int(n_divisions), float(eps))
     return str(result)
