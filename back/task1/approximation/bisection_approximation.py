@@ -21,5 +21,4 @@ class BisectionApproximation(BaseApproximation):
                 right = mid
             else:
                 left = mid
-
-        self.approximation_values.append((left + right) / 2)
+            self.approximation_values.append((left + right) / 2)
