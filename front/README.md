@@ -3,7 +3,7 @@
 ```bash
 cd front
 npm i
-npx run dev / npm run dev
+npx next dev / npm run dev
 ```
 
 
