@@ -1,10 +1,10 @@
 import abc
-import json
 
 from typing import Optional
 
 import sympy as sp
 from sympy.abc import x as x_sym
+from scipy.optimize import fsolve
 
 
 class BaseApproximation(abc.ABC):
@@ -33,8 +33,9 @@ class BaseApproximation(abc.ABC):
         self.approximation_values = [(right + left) / 2]
         self.eps = eps
         self.function = function
-        roots = sp.solve(function, x_sym, domain=(left, right))
-        self._true_value = roots[0] if roots else None
+        function_lambda = sp.lambdify(x_sym, function, modules=['numpy'])
+        roots = fsolve(function_lambda, float(sp.N(self.approximation_values[-1])))
+        self._true_value = float(roots[0] if roots else None)
 
         self._solve()
 
