@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, flash
+from flask_cors import cross_origin
 
 import task1
 
@@ -27,6 +28,7 @@ def task1_handler():
 @views.route(
     "/task1_endpoint/<function>&<left_bound>&<right_bound>&<n_divisions>&<eps>"
 )
+@cross_origin()
 def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
     try:
         result = task1.solve(function, left_bound, right_bound, n_divisions, eps)
