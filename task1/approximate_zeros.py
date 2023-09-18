@@ -24,7 +24,7 @@ def approximate_zeros(
         if function.subs(x_sym, x1) * function.subs(x_sym, x2) < 0:
             ans.append((x1, x2))
         elif abs(float(sp.N(function.subs(x_sym, x1)))) < 1e-10:
-            ans.append((x1, x1))
+            ans.append((x1, x2))
         x1 = x2
         x2 = x2 + h
 

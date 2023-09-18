@@ -7,13 +7,14 @@ from .base_approximation import BaseApproximation
 
 
 class SecantApproximation(BaseApproximation):
-    value_prev: Optional[sp.Number] = None
     method_name = "Secant Appoximation"
 
     def _step(self) -> sp.Number:
         x = self.approximation_values[-1]
         x_prev = self.approximation_values[-2]
         f = self.function
+        if x == x_prev:
+            return x
         new_value = x - f.subs(x_sym, x) / (
             f.subs(x_sym, x) - f.subs(x_sym, x_prev)
         ) * (x - x_prev)

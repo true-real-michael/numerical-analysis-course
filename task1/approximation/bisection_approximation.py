@@ -10,8 +10,8 @@ class BisectionApproximation(BaseApproximation):
         pass
 
     def _solve(self):
-        left = self._left
-        right = self._right
+        left = sp.N(self._left)
+        right = sp.N(self._right)
         f = self.function
 
         while right - left > 2 * self.eps:
@@ -21,4 +21,4 @@ class BisectionApproximation(BaseApproximation):
                 right = mid
             else:
                 left = mid
-            self.approximation_values.append((left + right) / 2)
+            self.approximation_values.append(sp.N((left + right) / 2))
