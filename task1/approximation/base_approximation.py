@@ -15,7 +15,7 @@ class BaseApproximation(abc.ABC):
     function: sp.Function
     approximation_values: list[sp.Number]
     method_name: str
-    _true_value: Optional[sp.Number]
+    _true_value: Optional[float]
 
     def __init__(
         self,
@@ -35,7 +35,7 @@ class BaseApproximation(abc.ABC):
         self.function = function
         function_lambda = sp.lambdify(x_sym, function, modules=['numpy'])
         roots = fsolve(function_lambda, float(sp.N(self.approximation_values[-1])))
-        self._true_value = float(roots[0] if roots else None)
+        self._true_value = float(roots[0]) if roots else None
 
         self._solve()
 
@@ -60,7 +60,7 @@ class BaseApproximation(abc.ABC):
 
     @property
     def true_value(self):
-        return float(sp.N(self._true_value))
+        return self._true_value or -999
 
     def _residual(self, val: sp.Number) -> float:
         return abs(float(sp.N(self.function.subs(x_sym, val))))
@@ -72,7 +72,7 @@ class BaseApproximation(abc.ABC):
     def _solve(self):
         new_value = self._step()
         self._inc_steps()
-        while abs(new_value - self.value) > self.eps:
+        while abs(new_value - self.approximation_values[-1]) > self.eps:
             self.approximation_values.append(new_value)
             new_value = self._step()
             self._inc_steps()
@@ -90,7 +90,7 @@ class BaseApproximation(abc.ABC):
                     else 0,
                     "error": float(sp.N(abs(x - self._true_value)))
                     if self._true_value
-                    else -1,
+                    else -999,
                     "residual": self._residual(x),
                 }
                 for i, x in enumerate(self.approximation_values)

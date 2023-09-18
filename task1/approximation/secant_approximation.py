@@ -11,7 +11,7 @@ class SecantApproximation(BaseApproximation):
     method_name = "Secant Appoximation"
 
     def _step(self) -> sp.Number:
-        x = self.value
+        x = self.approximation_values[-1]
         x_prev = self.approximation_values[-2]
         f = self.function
         new_value = x - f.subs(x_sym, x) / (
@@ -21,7 +21,7 @@ class SecantApproximation(BaseApproximation):
 
     def _solve(self):
         self.approximation_values.insert(
-            0, self._right if self.value != self._right else self._left
+            0, self._right if self.approximation_values[-1] != self._right else self._left
         )
         super()._solve()
         self.approximation_values.pop(0)
