@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash
 from flask_cors import cross_origin
 
-from back import task1
+import task1
 
 views = Blueprint("views", __name__)
 
