@@ -2,5 +2,6 @@ from .base_approximation import BaseApproximation
 from .bisection_approximation import BisectionApproximation
 from .chord_approximation import ChordApproximation
 from .newton_approximation import NewtonApproximation
+from .modified_newton_approximation import ModifiedNewtonApproximation
 from .secant_approximation import SecantApproximation
 from .fixed_point_iteration_approximation import FixedPointIterationApproximation
