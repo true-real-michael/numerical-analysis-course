@@ -10,6 +10,7 @@ from .approximation import (
     SecantApproximation,
     FixedPointIterationApproximation,
     NewtonApproximation,
+    ModifiedNewtonApproximation
 )
 from .approximate_zeros import approximate_zeros
 
@@ -53,6 +54,7 @@ def pipeline(
         "Secant Approximation": SecantApproximation,
         "Fixed PointIteration Approximation": FixedPointIterationApproximation,
         "Newton Approximation": NewtonApproximation,
+        "Modified Newton Approximation": ModifiedNewtonApproximation,
     }
 
     for left, right in approximate_zeros(function, left, right, sp.Number(n_divisions)):
