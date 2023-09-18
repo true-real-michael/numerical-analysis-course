@@ -10,7 +10,7 @@ def approximate_zeros(
     left: sp.Number,
     right: sp.Number,
     number_of_subsections: sp.Integer,
-) -> List[Union[tuple[sp.Number, sp.Number], sp.Number]]:
+) -> List[tuple[sp.Number, sp.Number]]:
     if right < left:
         raise ValueError("the left border of domain must be less than the right border")
 
@@ -23,7 +23,7 @@ def approximate_zeros(
     while x2 < right:
         if function.subs(x_sym, x1) * function.subs(x_sym, x2) < 0:
             ans.append((x1, x2))
-        elif function.evalf(x1) == 0:
+        elif abs(float(sp.N(function.subs(x_sym, x1)))) < 1e-10:
             ans.append((x1, x1))
         x1 = x2
         x2 = x2 + h

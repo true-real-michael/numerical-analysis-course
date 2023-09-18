@@ -8,7 +8,7 @@ class ChordApproximation(BaseApproximation):
     method_name = "Chord Approximation"
 
     def _step(self) -> sp.Number:
-        x = self.value
+        x = self.approximation_values[-1]
         f = self.function
         return (
             x

@@ -9,4 +9,4 @@ class FixedPointIterationApproximation(BaseApproximation):
 
     def _step(self) -> sp.Number:
         phi = x_sym - self.function / sp.diff(self.function, x_sym)
-        return phi.subs(x_sym, self.value)
+        return phi.subs(x_sym, self.approximation_values[-1])
