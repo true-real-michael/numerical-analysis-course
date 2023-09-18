@@ -7,4 +7,6 @@ COPY . .
 
 RUN npm i
 
+EXPOSE 3000
+
 ENTRYPOINT ["npx", "next", "dev"]
