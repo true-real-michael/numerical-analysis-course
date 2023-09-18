@@ -2,6 +2,8 @@ import json
 import dataclasses
 
 import sympy as sp
+from sympy.abc import x as x_sym
+from scipy.optimize import fsolve
 
 from .approximation import (
     BaseApproximation,
@@ -10,7 +12,7 @@ from .approximation import (
     SecantApproximation,
     FixedPointIterationApproximation,
     NewtonApproximation,
-    ModifiedNewtonApproximation
+    ModifiedNewtonApproximation,
 )
 from .approximate_zeros import approximate_zeros
 
@@ -58,12 +60,18 @@ def pipeline(
     }
 
     for left, right in approximate_zeros(function, left, right, sp.Number(n_divisions)):
+        print(f'{left} {right}')
+        function_lambda = sp.lambdify(x_sym, function, modules=['numpy'])
+        roots = fsolve(function_lambda, float(sp.N((left + right) / 2)))
+        true_value = float(roots[0]) if roots else None
+
         new_approx = ApproximationCollection(float(sp.N(left)), float(sp.N(right)), {})
         for method_name in methods:
             method = methods[method_name]
             new_approx.approximations[method_name] = method(
-                function, left, right, sp.Number(eps)
+                function, left, right, sp.Number(eps), true_value
             )
+            print(f'done {method_name}')
         ans.append(new_approx)
 
     return json.dumps(

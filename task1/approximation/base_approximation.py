@@ -23,19 +23,18 @@ class BaseApproximation(abc.ABC):
         left: sp.Number,
         right: sp.Number,
         eps: sp.Number,
+        true_value: Optional[float]
     ):
         if right < left:
             raise ValueError(
                 "the left border of domain must be less than the right border"
             )
-        self._left = left
-        self._right = right
+        self._left = sp.N(left)
+        self._right = sp.N(right)
         self.approximation_values = [(right + left) / 2]
         self.eps = eps
         self.function = function
-        function_lambda = sp.lambdify(x_sym, function, modules=['numpy'])
-        roots = fsolve(function_lambda, float(sp.N(self.approximation_values[-1])))
-        self._true_value = float(roots[0]) if roots else None
+        self._true_value = true_value
 
         self._solve()
 
@@ -70,13 +69,13 @@ class BaseApproximation(abc.ABC):
         pass
 
     def _solve(self):
-        new_value = self._step()
-        self._inc_steps()
-        while abs(new_value - self.approximation_values[-1]) > self.eps:
-            self.approximation_values.append(new_value)
-            new_value = self._step()
-            self._inc_steps()
+        new_value = sp.N(self._step())
         self.approximation_values.append(new_value)
+        self._inc_steps()
+        while abs(self.approximation_values[-1] - self.approximation_values[-2]) > self.eps:
+            new_value = sp.N(self._step())
+            self._inc_steps()
+            self.approximation_values.append(new_value)
 
     def to_dict(self):
         return {
