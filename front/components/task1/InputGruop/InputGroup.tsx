@@ -65,7 +65,7 @@ const InputGroup: React.FC<Props> = ({
             <Input
                 className={styles.small_input}
                 label="Epsilon:"
-                placeholder="3"
+                placeholder="0.00001"
                 type="number"
                 value={epsilon}
                 onChange={(e) => setEpsilon(e.target.value)}
