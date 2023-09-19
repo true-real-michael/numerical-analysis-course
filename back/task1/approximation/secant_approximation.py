@@ -21,8 +21,7 @@ class SecantApproximation(BaseApproximation):
         return new_value
 
     def _solve(self):
-        self.approximation_values.insert(
-            0, self._right if self.approximation_values[-1] != self._right else self._left
-        )
-        super()._solve()
         self.approximation_values.pop(0)
+        self.approximation_values.append(self._left)
+        self.approximation_values.append(self._right)
+        super()._solve()
