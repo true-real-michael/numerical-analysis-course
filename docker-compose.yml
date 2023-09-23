@@ -2,7 +2,7 @@ version: "3"
 services:
   back:
     build: back/
-    command: flask run
+    command: flask run --port 3001 --host 0.0.0.0
     ports:
       - "3001:3001"
   front:
