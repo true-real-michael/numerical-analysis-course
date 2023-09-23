@@ -1,5 +1,4 @@
 from typing import List
-from typing import Union
 
 import sympy as sp
 from sympy.abc import x as x_sym

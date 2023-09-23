@@ -1,0 +1,14 @@
+version: "3"
+services:
+  back:
+    build: back/
+    command: flask run --port 3001 --host 0.0.0.0
+    ports:
+      - "3001:3001"
+  front:
+    build: front/
+    command: npx next dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
