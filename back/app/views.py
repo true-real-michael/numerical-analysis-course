@@ -35,4 +35,6 @@ def task_2endpoint(function, left_bound, right_bound, n, x_values, x):
         flash(str(e))
 
     return result
+
+
 # curl 'localhost:3001/task2_endpoint/2*sin(x)-0.5*x&0.2&0.7&4&\[0.2,0.31,0.42,0.53,0.64,0.7\]&0.5'

@@ -6,6 +6,7 @@ from .base_approximation import BaseApproximation
 
 class BisectionApproximation(BaseApproximation):
     method_name = "Bisection Approximation"
+
     def _step(self) -> sp.Number:
         pass
 

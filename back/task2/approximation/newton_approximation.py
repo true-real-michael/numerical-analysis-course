@@ -6,6 +6,7 @@ from .base_approximation import BaseApproximation
 
 class NewtonApproximation(BaseApproximation):
     name = "Newton Approximation"
+
     def __init__(self, function, values, x):
         super().__init__(function, values, x)
 

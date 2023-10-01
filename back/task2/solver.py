@@ -16,9 +16,11 @@ def solve(function: str, left: str, right: str, n: str, x_values: str, x: str):
     right = float(right)
     n = int(n)
     x = float(x)
-    assert n < len(x_values)
-
     x_values = json.loads(x_values)
+
+    assert n < len(x_values)
+    assert all(tuple(map(lambda xi: left <= xi <= right, x_values)))
+
     x_values = sorted(x_values, key=lambda xi: abs(xi - x))
     selected = x_values[: n + 1]
 

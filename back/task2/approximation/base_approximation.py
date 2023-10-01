@@ -24,6 +24,6 @@ class BaseApproximation:
     def to_dict(self):
         return {
             "name": self.name,
-            "polynomial": self.polynomial,
+            "polynomial": str(self.polynomial),
             "error": abs(float(self._f(self.x)) - float(self._p(self.x))),
         }

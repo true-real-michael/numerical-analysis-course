@@ -6,6 +6,7 @@ from .base_approximation import BaseApproximation
 
 class LagrangeApproximation(BaseApproximation):
     name = "Lagrange Approximation"
+
     def __init__(self, function, values, x):
         super().__init__(function, values, x)
 
