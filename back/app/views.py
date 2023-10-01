@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash
 from flask_cors import cross_origin
 
-from back import task1
+from back import task1, task2
 
 views = Blueprint("views", __name__)
 
@@ -31,7 +31,7 @@ def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
 @cross_origin()
 def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
     try:
-        result = task1.solve(function, left_bound, right_bound, n_divisions, eps)
+        result = task2.solve(function, left_bound, right_bound, n_divisions, eps)
     except Exception as e:
         result = {"error": str(e)}
         flash(str(e))
