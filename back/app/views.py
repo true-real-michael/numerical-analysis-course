@@ -25,13 +25,11 @@ def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
     return result
 
 
-@views.route(
-    "/task2_endpoint/<function>&<left_bound>&<right_bound>&<n_divisions>&<eps>"
-)
+@views.route("/task2_endpoint/<function>&<left_bound>&<right_bound>&<n>&<x_values>&x")
 @cross_origin()
-def task_1endpoint(function, left_bound, right_bound, n_divisions, eps):
+def task_1endpoint(function, left_bound, right_bound, n, x_values, x):
     try:
-        result = task2.solve(function, left_bound, right_bound, n_divisions, eps)
+        result = task2.solve(function, left_bound, right_bound, n, x_values, x)
     except Exception as e:
         result = {"error": str(e)}
         flash(str(e))
