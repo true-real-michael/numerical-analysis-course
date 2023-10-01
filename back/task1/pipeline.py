@@ -60,8 +60,8 @@ def pipeline(
     }
 
     for left, right in approximate_zeros(function, left, right, sp.Number(n_divisions)):
-        print(f'{left} {right}')
-        function_lambda = sp.lambdify(x_sym, function, modules=['numpy'])
+        print(f"{left} {right}")
+        function_lambda = sp.lambdify(x_sym, function, modules=["numpy"])
         roots = fsolve(function_lambda, float(sp.N((left + right) / 2)))
         true_value = float(roots[0]) if roots else None
 
@@ -71,7 +71,7 @@ def pipeline(
             new_approx.approximations[method_name] = method(
                 function, left, right, sp.Number(eps), true_value
             )
-            print(f'done {method_name}')
+            print(f"done {method_name}")
         ans.append(new_approx)
 
     return json.dumps(

@@ -6,8 +6,8 @@ from .pipeline import pipeline
 def solve(
     function: str, left: str, right: str, n_divisions: str = "20", eps: str = "0.001"
 ):
-    if not function or function == 'undefined':
-        raise ValueError('bad function')
+    if not function or function == "undefined":
+        raise ValueError("bad function")
 
     try:
         function = sp.parsing.sympy_parser.parse_expr(function)

@@ -23,7 +23,7 @@ class BaseApproximation(abc.ABC):
         left: sp.Number,
         right: sp.Number,
         eps: sp.Number,
-        true_value: Optional[float]
+        true_value: Optional[float],
     ):
         if right < left:
             raise ValueError(
@@ -72,7 +72,10 @@ class BaseApproximation(abc.ABC):
         new_value = sp.N(self._step())
         self.approximation_values.append(new_value)
         self._inc_steps()
-        while abs(self.approximation_values[-1] - self.approximation_values[-2]) > self.eps:
+        while (
+            abs(self.approximation_values[-1] - self.approximation_values[-2])
+            > self.eps
+        ):
             new_value = sp.N(self._step())
             self._inc_steps()
             self.approximation_values.append(new_value)
