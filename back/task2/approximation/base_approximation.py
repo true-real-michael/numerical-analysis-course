@@ -12,8 +12,8 @@ class BaseApproximation:
         self.function = function
         self.x = x
         self.values = []
-        for x, y in values:
-            self.values.append((sp.Number(x), sp.Number(y)))
+        for x in values:
+            self.values.append((sp.Number(x), sp.Number(self._f(sp.Number(x)))))
 
     def _f(self, x: sp.Number) -> sp.Number:
         return sp.N(self.function.subs(x_sym, x))

@@ -6,8 +6,8 @@ from .base_approximation import BaseApproximation
 
 class NewtonApproximation(BaseApproximation):
     name = "Newton Approximation"
-    def __init__(self, function, values):
-        super().__init__(function, values)
+    def __init__(self, function, values, x):
+        super().__init__(function, values, x)
 
         def div_diff(values):
             if len(values) < 2:

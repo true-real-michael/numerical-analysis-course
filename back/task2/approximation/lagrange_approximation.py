@@ -6,8 +6,8 @@ from .base_approximation import BaseApproximation
 
 class LagrangeApproximation(BaseApproximation):
     name = "Lagrange Approximation"
-    def __init__(self, function, values):
-        super().__init__(function, values)
+    def __init__(self, function, values, x):
+        super().__init__(function, values, x)
 
         self.polynomial = 0
         for k, (xk, yk) in enumerate(self.values):
