@@ -19,4 +19,4 @@ class LagrangeApproximation(BaseApproximation):
                 denominator *= (xk - xi) if i != k else 1
             self.polynomial += yk * numerator / denominator
 
-        self.polynomial = sp.expand(self.polynomial)
+        # self.polynomial = sp.expand(self.polynomial)
