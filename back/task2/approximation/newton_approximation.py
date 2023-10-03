@@ -28,4 +28,4 @@ class NewtonApproximation(BaseApproximation):
         for i in range(len(self.values)):
             self.polynomial += div_diff(self.values[: i + 1]) * multiplicator
             multiplicator *= x_sym - self.values[i][0]
-        self.polynomial = sp.simplify(self.polynomial)  # or expand
+        self.polynomial = sp.expand(self.polynomial)  # or expand
