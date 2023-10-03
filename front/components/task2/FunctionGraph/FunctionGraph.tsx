@@ -39,14 +39,11 @@ const FunctionGraph: React.FC<Props> = ({ output }) => {
                 data: [
                     ...getFunctions(),
 
-                    // { fn: output.approximation_by_method[1].polynomial },
                     {
                         points: output.points,
                         fnType: "points",
                         graphType: "scatter",
                         color: "red",
-
-                        // legend: "Data Points",
                     },
                 ],
             });
