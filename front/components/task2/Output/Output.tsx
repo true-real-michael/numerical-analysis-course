@@ -5,8 +5,10 @@ import FunctionGraph from "../FunctionGraph/FunctionGraph";
 type Props = {
     output: Task2Answer | undefined | { error: string };
     isLoading?: boolean;
+    defaultFunc: string;
 };
-const Output: React.FC<Props> = ({ output, isLoading }) => {
+const Output: React.FC<Props> = ({ output, isLoading, defaultFunc }) => {
+    console.log(defaultFunc);
     return (
         <div>
             {isLoading && <h4 className={styles.loading}>Loading</h4>}
@@ -29,7 +31,7 @@ const Output: React.FC<Props> = ({ output, isLoading }) => {
                         </div>
                     </div>
 
-                    <FunctionGraph output={output} />
+                    <FunctionGraph output={output} defaultFunc={defaultFunc} />
                     <div className={styles.dots}>
                         <span>Точки:</span>
                         {output?.points.map((point, index) => (

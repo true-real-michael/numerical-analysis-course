@@ -15,6 +15,7 @@ export default function Home() {
         Task2Answer | { error: string }
     >();
     const [N, setN] = useState<string>("");
+    const [func, setFunc] = useState("2*sin(x)+0.5*x");
     const [xValues, setXValues] = useState<string>();
     const [x, setX] = useState<string>();
     const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
@@ -37,6 +38,7 @@ export default function Home() {
             console.log(url);
             try {
                 setIsLoading(true);
+                setFunc(inputFunction);
                 const response = await fetch(url, {
                     method: "GET",
                 });
@@ -87,7 +89,11 @@ export default function Home() {
                     setX(val);
                 }}
             />
-            <Output output={calculationResult} isLoading={isLoading} />
+            <Output
+                output={calculationResult}
+                defaultFunc={func}
+                isLoading={isLoading}
+            />
         </Layout>
     );
 }

@@ -4,10 +4,12 @@ import styles from "./FuctionGraph.module.scss";
 
 type Props = {
     output: Task2Answer | undefined;
+    defaultFunc: string;
 };
 
-const FunctionGraph: React.FC<Props> = ({ output }) => {
+const FunctionGraph: React.FC<Props> = ({ output, defaultFunc }) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    console.log(defaultFunc);
     useEffect(() => {
         if (output && containerRef.current) {
             let width = containerRef.current.offsetWidth;
@@ -38,6 +40,10 @@ const FunctionGraph: React.FC<Props> = ({ output }) => {
                 grid: true,
                 data: [
                     ...getFunctions(),
+                    {
+                        fn: defaultFunc,
+                        color: "red",
+                    },
 
                     {
                         points: output.points,
