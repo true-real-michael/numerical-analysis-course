@@ -25,6 +25,6 @@ class BaseApproximation:
         return {
             "name": self.name,
             "polynomial": str(self.polynomial),
-            "estimated_value": float(self._f(self.x)),
+            "estimated_value": float(self._p(self.x)),
             "error": abs(float(self._f(self.x)) - float(self._p(self.x))),
         }
