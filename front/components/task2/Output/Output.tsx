@@ -25,7 +25,11 @@ const Output: React.FC<Props> = ({ output, isLoading, defaultFunc }) => {
                                 <div key={method.name} className={styles.row}>
                                     <span>{method.name}</span>
                                     <span>{method.polynomial}</span>
-                                    <span>{method.error}</span>
+                                    <span>
+                                        {method.error}
+                                        <br /> y=
+                                        {method.estimated_value}
+                                    </span>
                                 </div>
                             ))}
                         </div>
@@ -33,6 +37,8 @@ const Output: React.FC<Props> = ({ output, isLoading, defaultFunc }) => {
 
                     <FunctionGraph output={output} defaultFunc={defaultFunc} />
                     <div className={styles.dots}>
+                        <p> Значение в x: {output.true_value}</p>
+                        <br />
                         <span>Точки:</span>
                         {output?.points.map((point, index) => (
                             <span className={styles.point} key={index}>
