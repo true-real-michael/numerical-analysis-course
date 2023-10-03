@@ -5,6 +5,7 @@ import Output from "../components/task1/Output/Output";
 import InputGroup from "../components/task1/InputGruop/InputGroup";
 import Layout from "../components/common/Layout/Layout";
 import Title from "../components/common/Title/Title";
+import { toast } from "react-toastify";
 
 export default function Home() {
     const [inputFunction, setInputFunction] = useState<string>();
@@ -25,14 +26,14 @@ export default function Home() {
             });
             console.log(url);
             if (!response.ok) {
-                alert("Ошибка!");
+                toast.error("Ошибка!", { icon: true });
             }
             const calculatedData: Task1Type = await response.json();
             console.log(calculatedData);
             setCalculationResult(calculatedData);
             setIsLoading(false);
         } catch {
-            alert("Ошибка!");
+            toast.error("Ошибка!", { icon: true });
             setIsLoading(false);
         }
     };

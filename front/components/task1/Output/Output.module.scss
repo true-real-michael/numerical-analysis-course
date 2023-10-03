@@ -19,8 +19,8 @@
     }
     
     td {
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
+        border-right: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         padding: 8px;
         // width: 20%; 
         display: table-cell;
@@ -40,7 +40,6 @@
         }
     }
     
-    /* Add some additional styling for the unordered lists */
     ul {
         list-style-type: none;
         padding: 0;
@@ -51,13 +50,11 @@
         margin-top: 20px;
     }
     
-    /* Style the list items within the unordered lists */
     li {
         margin-bottom: 4px;
         margin-top: 4px;
     }
     
-    /* Style the strong (method name) elements */
     strong {
         font-weight: bold;
     }

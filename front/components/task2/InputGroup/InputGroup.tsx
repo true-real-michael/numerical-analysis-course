@@ -36,7 +36,7 @@ const InputGroup: React.FC<Props> = ({
     return (
         <div className={styles.content}>
             <Input
-                className={styles.big_input}
+                className={styles.small_input}
                 label="Функция:"
                 placeholder="2*sin(x)+cos(x)"
                 value={inputFunction}

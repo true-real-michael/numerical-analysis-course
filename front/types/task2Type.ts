@@ -1,5 +1,7 @@
 type Task2Answer = {
-    name: string;
-    polynomial: string;
-    error: number;
-  };
+    points: number[][], 
+        approximation_by_method: {
+        name: string;
+        polynomial: string;
+        error: number;
+    }[]} 
