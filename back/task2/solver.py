@@ -27,6 +27,7 @@ def solve(function: str, left: str, right: str, n: str, x_values: str, x: str):
 
     res = {
         "points": [[xi, float(sp.N(function.subs(x_sym, xi)))] for xi in selected],
+        "true_value": float(sp.N(function.subs(x_sym, x))),
         "approximation_by_method": [
             NewtonApproximation(function, selected, x).to_dict(),
             LagrangeApproximation(function, selected, x).to_dict(),
