@@ -11,7 +11,7 @@ def f(x: sp.Number, function) -> sp.Number:
     return sp.Number(sp.N(function.subs(x_sym, x)))
 
 
-def solve_4_1(left, right, function):
+def solve_4_1(function, left, right):
     try:
         function = sp.parsing.sympy_parser.parse_expr(function)
     except Exception:
@@ -37,7 +37,7 @@ def solve_4_1(left, right, function):
     return json.dumps(res)
 
 
-def solve_4_2(left, right, n, function):
+def solve_4_2(function, left, right, n):
     try:
         function = sp.parsing.sympy_parser.parse_expr(function)
     except Exception:
