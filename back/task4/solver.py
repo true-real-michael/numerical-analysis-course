@@ -25,12 +25,12 @@ def solve_4_1(function, left, right):
     res = {
         "true_value": float(true_value),
         "approximation_by_method": [
-            SIRL(left, right, function, true_value),
-            SIRR(left, right, function, true_value),
-            SIRM(left, right, function, true_value),
-            SIT(left, right, function, true_value),
-            SIS(left, right, function, true_value),
-            SITE(left, right, function, true_value),
+            SIRL(left, right, function, true_value).to_dict(),
+            SIRR(left, right, function, true_value).to_dict(),
+            SIRM(left, right, function, true_value).to_dict(),
+            SIT(left, right, function, true_value).to_dict(),
+            SIS(left, right, function, true_value).to_dict(),
+            SITE(left, right, function, true_value).to_dict(),
         ],
     }
 
@@ -54,15 +54,15 @@ def solve_4_2(function, left, right, n):
     true_value = sp.integrate(function, (x_sym, left, right))
 
     res = {
-        "points": [[x, y] for x, y in values],
+        "points": [[float(x), float(y)] for x, y in values],
         "true_value": float(true_value),
         "approximation_by_method": [
-            CIRL(left, right, function, values, true_value),
-            CIRR(left, right, function, values, true_value),
-            CIRM(left, right, function, values, true_value),
-            CIT(left, right, function, values, true_value),
-            CIS(left, right, function, values, true_value),
-            CITE(left, right, function, values, true_value),
+            CIRL(left, right, function, x_values, true_value).to_dict(),
+            CIRR(left, right, function, x_values, true_value).to_dict(),
+            CIRM(left, right, function, x_values, true_value).to_dict(),
+            CIT(left, right, function, x_values, true_value).to_dict(),
+            CIS(left, right, function, x_values, true_value).to_dict(),
+            CITE(left, right, function, x_values, true_value).to_dict(),
         ],
     }
 

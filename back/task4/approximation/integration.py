@@ -59,10 +59,11 @@ class ComplexIntegration(Formula, ABC):
         self.values = values
         self.true_value = true_value
 
-        self.value = self.solve()
+        self.value = 0
+        self.solve()
 
     def solve(self):
-        for x1, y1, x2, y2 in zip(self.values[:-1], self.values[1:]):
+        for x1, x2 in zip(self.values[:-1], self.values[1:]):
             self.value = sp.N(self.value + self.formula(x1, x2))
 
     def to_dict(self):
