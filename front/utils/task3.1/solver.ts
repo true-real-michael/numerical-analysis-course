@@ -66,7 +66,7 @@ const task3_1Solver = (leftBound: number, rightBound: number, nodesAmount: numbe
    let additionalInfo = ''
     if (rootSearchInterpolationInfoList.length === 0) {
       console.log(`На отрезке ${segment} корни не найдены`);
-      additionalInfo = `На отрезке [${segment.start}, ${segment.end}] корни не найдены`
+      additionalInfo = `На отрезке [${segment.start}, ${segment.end}] функция не принимает значение F`
     }
     return { table:funcValuesTable,
       reversedTabel: reverseValuesTable,
