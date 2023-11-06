@@ -1,3 +1,4 @@
+import { table } from "table";
 import { FuncValuesTable } from "../task3.1/Interpolation";
 import { Derivative, defineNodes } from "./NumericalDifferentiation";
 
@@ -36,10 +37,10 @@ const task3_2Solver = (
         const absErrorDD = ddf !== null ? Math.abs(ddfunc(x) - ddf) : null;
         // const relErrorDD =
         //     ddf !== null ? (absErrorDD ?? 0) / Math.abs(ddf) : null;
-        tableArray.push([x ?? '-', f ?? '-', df ?? '-', absErrorD ?? '-', ddf ?? '-', absErrorDD ?? '-'])
+        tableArray.push([x , f , df , absErrorD , ddf , absErrorDD ])
         
     }
-
+    console.log(table(tableArray))
     return { valuesTable: funcValuesTable, resultTable: tableArray };
 };
 

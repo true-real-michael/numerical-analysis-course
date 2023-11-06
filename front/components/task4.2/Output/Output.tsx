@@ -6,6 +6,7 @@ type Props = {
     isLoading?: boolean;
 };
 const Output: React.FC<Props> = ({ output, isLoading }) => {
+    console.log(output);
     return (
         <div>
             {isLoading && <h4 className={styles.loading}>Loading</h4>}

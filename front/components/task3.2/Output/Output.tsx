@@ -13,6 +13,7 @@ type Props = {
     isLoading: boolean;
 };
 const Output: React.FC<Props> = ({ result, isLoading }) => {
+    console.log(result?.resultTable[5]);
     return (
         <div className={styles.container}>
             {isLoading && <p>Рассчитываем...</p>}
@@ -42,12 +43,21 @@ const Output: React.FC<Props> = ({ result, isLoading }) => {
                     <div className={styles.main_table}>
                         {result.resultTable.map(
                             (row: (string | number | null)[]) => {
-                                console.log(row);
+                                if (row[0] === -5.999999991) {
+                                }
                                 return (
                                     <div key={row[0]}>
-                                        {row.map((elem) => (
-                                            <span key={elem}>{elem}</span>
-                                        ))}
+                                        <span>{row[0] ?? "-"}</span>
+                                        <span>{row[1] ?? "-"}</span>
+                                        <span>{row[2] ?? "-"}</span>
+                                        <span>{row[3] ?? "-"}</span>
+                                        <span>{row[4] ?? "-"}</span>
+                                        <span>{row[5] ?? "-"}</span>
+                                        {/* {row.map((elem) => {
+                                            return (
+                                                <span key={elem}>{elem}</span>
+                                            );
+                                        })} */}
                                     </div>
                                 );
                             }
