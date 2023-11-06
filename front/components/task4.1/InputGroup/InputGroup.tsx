@@ -47,7 +47,7 @@ const InputGroup: React.FC<Props> = ({
                 onChange={(e) => setRightBound(e.target.value)}
             />
             <Button type="button" onClick={calculate}>
-                Найти корни
+                Интегрировать
             </Button>
         </div>
     );

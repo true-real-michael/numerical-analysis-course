@@ -58,7 +58,7 @@ const InputGroup: React.FC<Props> = ({
                 onChange={(e) => setN(e.target.value)}
             />
             <Button type="button" onClick={calculate}>
-                Найти корни
+                Интегрировать
             </Button>
         </div>
     );
