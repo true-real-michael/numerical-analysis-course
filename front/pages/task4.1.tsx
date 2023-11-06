@@ -48,7 +48,7 @@ export default function Home() {
         <Layout title="Практические задания Киселева Михаила и Калинина Михаила">
             <Title
                 small={true}
-                title="Задача дискретного интегрирования"
+                title="Задача численного интегрирования"
             />
             <InputGroup
                 func={inputFunction}
