@@ -17,8 +17,13 @@ export default function Home() {
         | {
               table: FuncValuesTable | null;
               reversedTabel: FuncValuesTable | null;
-              methods: { value: number; error: number }[] | null;
-              additionalInfo: string | null;
+              selectedNodes: any[];
+              method1: {
+                  text: string;
+                  value: string;
+                  diff: string;
+              };
+              otherMethods: string[];
           }
         | undefined
     >();

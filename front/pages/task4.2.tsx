@@ -13,7 +13,7 @@ export default function Home() {
     const [N, setN] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [calculationResult, setCalculationResult] = useState<
-        Task2Answer | { error: string }
+        Task4_2Answer | { error: string }
     >();
     const { publicRuntimeConfig } = getConfig();
 
@@ -35,7 +35,7 @@ export default function Home() {
                 if (!response.ok) {
                     toast.error("Ошибка!", { icon: true });
                 }
-                const calculatedData: Task2Answer = await response.json();
+                const calculatedData: Task4_2Answer = await response.json();
                 console.log(calculatedData);
                 setCalculationResult(calculatedData);
                 setIsLoading(false);

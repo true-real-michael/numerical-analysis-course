@@ -7,14 +7,23 @@ type Props = {
         | {
               table: FuncValuesTable | null;
               reversedTabel: FuncValuesTable | null;
-              methods: { value: number; error: number }[] | null;
-              additionalInfo: string | null;
+              selectedNodes: any[];
+              method1: {
+                  text: string;
+                  value: string;
+                  diff: string;
+              };
+              otherMethods:
+                  | string[]
+                  | { value: string; abs: string; diff: string }[];
+              segments: any;
           }
         | undefined;
     isLoading: boolean;
     f: number;
 };
 const Output: React.FC<Props> = ({ result, isLoading, f }) => {
+    console.log(result?.segments);
     return (
         <div className={styles.container}>
             {isLoading && <p>Рассчитываем...</p>}
@@ -60,23 +69,85 @@ const Output: React.FC<Props> = ({ result, isLoading, f }) => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.methods}>
-                        {result?.methods?.map((method, index) => (
-                            <div key={index}>
-                                <span className={styles.index}>
-                                    Метод №{index + 1}
-                                </span>
+                    {/* <div className={styles.nodes}>
+                        <h4> Отсортированные узлы</h4>
+
+                        {result.selectedNodes.map((node) => (
+                            <div key={node}>
+                                <span>{node}</span>
                                 <span>
-                                    Q({f}): {method.value}
+                                    {
+                                        result.reversedTabel.values[
+                                            result.reversedTabel?.nodes.indexOf(
+                                                node
+                                            )
+                                        ]
+                                    }
                                 </span>
-                                <span>|f(x)-F|: {method.error}</span>
                             </div>
                         ))}
+                    </div> */}
+                    {/* <div className={styles.sorted_nodes}>
+                        <span className={styles.index}>
+                            Отсортированные узлы
+                        </span>
+                        {result.selectedNodes.map((node) => (
+                            <span key={node}>{node}</span>
+                        ))}
+                    </div> */}
+                    {/* <div className={styles.table_and_title}>
+                        <h4>Колличество сегментов: {result.segments.length}</h4>
+                        <div className={styles.table_segments}>
+                            <div>
+                                {result?.segments.map(
+                                    (segment: any, index: any) => (
+                                        <span key={index}>{index + 1}</span>
+                                    )
+                                )}
+                            </div>
+                            <div>
+                                {result?.segments.map(
+                                    (segment: any, index: any) => (
+                                        <span key={index}>
+                                            [{segment[0]}, {segment[1]}]
+                                        </span>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                    </div> */}
+                    <div className={styles.methods}>
+                        <div>
+                            <span className={styles.index}>Метод №1</span>
+                            <span>{result.method1.text}</span>
+                            <span>{result.method1.value}</span>
+                            <span>{result.method1.diff}</span>
+                        </div>
                     </div>
-                    {result?.additionalInfo &&
-                        result?.additionalInfo?.length > 0 && (
-                            <p>{result?.additionalInfo}</p>
-                        )}
+                    {result.otherMethods.map((method, index) => {
+                        if (typeof method !== "string") {
+                            return (
+                                <div
+                                    key={method.abs}
+                                    className={styles.segment_method}
+                                >
+                                    <span className={styles.index}>
+                                        Сегмент [{result.segments[index][0]},{" "}
+                                        {result.segments[index][1]}]
+                                    </span>
+                                    <span>{method.value}</span>
+                                    <span>{method.abs}</span>
+                                    <span>{method.diff}</span>
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div key={method}>
+                                    <span>{method}</span>
+                                </div>
+                            );
+                        }
+                    })}
                 </>
             )}
         </div>
