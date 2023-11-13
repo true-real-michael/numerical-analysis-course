@@ -44,9 +44,4 @@ class Simpsons(Formula):
 class ThreeEighths(Formula):
     def formula(self, x1, x2):
         h = (x2 - x1) / 3
-        return (x2 - x1) * (
-            (self._f(x1) / 8.0)
-            + (self._f(x2) / 8.0)
-            + (3.0 / 8 * self._f(x2 + h))
-            + (3.0 / 8 * self._f(x1 + (2 * h)))
-        )
+        return (x2 - x1) / 8 * (self._f(x1) + 3*self._f(x1 + h) + 3*self._f(x1 + h + h) + self._f(x2))
