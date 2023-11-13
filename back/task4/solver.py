@@ -48,7 +48,7 @@ def solve_4_2(function, left, right, n):
     n = int(n)
     values = []
 
-    x_values = np.arange(start=left, stop=right, step=(right - left) / n)
+    x_values = np.arange(start=left, stop=right + (right - left) / n, step=(right - left) / n)
     for x in x_values:
         values.append((sp.Number(x), f(sp.Number(x), function)))
     true_value = sp.integrate(function, (x_sym, left, right))
