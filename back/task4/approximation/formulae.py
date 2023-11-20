@@ -28,7 +28,7 @@ class RectangleRight(Formula):
 
 class RectangleMid(Formula):
     def formula(self, x1, x2):
-        return (x2 - x1) * (self._f(x1) + self._f(x2)) / 2
+        return (x2 - x1) * (self._f((x1 + x2) / 2))
 
 
 class Trapeze(Formula):
