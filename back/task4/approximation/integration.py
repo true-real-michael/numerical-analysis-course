@@ -3,7 +3,19 @@ from sympy.abc import x as x_sym
 
 from back.task4.approximation.formulae import *
 
-__all__ = ["SIS", "SIT", "SIRL", "SIRR", "SIRM", "SITE", "CIS", "CIT", "CIRL", "CIRR", "CIRM", "CITE"]
+__all__ = [
+    "SIS",
+    "SIT",
+    "SIRL",
+    "SIRR",
+    "SIRM",
+    "SITE",
+    "CIS",
+    "CIT",
+    "CIRL",
+    "CIRR",
+    "CIRM",
+]
 
 
 class SimpleIntegration(Formula, ABC):
@@ -52,12 +64,18 @@ class SITE(SimpleIntegration, ThreeEighths):
 class ComplexIntegration(Formula, ABC):
     name = "base integration"
 
-    def __init__(self, left, right, function, values, true_value):
+    def __init__(self, left, right, function, values, true_value, h, w, q, z):
         super().__init__(function)
         self.left = left
         self.right = right
         self.values = values
         self.true_value = true_value
+        self._h = h
+        self._w = w
+        self._q = q
+        self._z = z
+        # print(self._h, self._w, self._z, self._q)
+        # print(values)
 
         self.value = 0
         self.solve()
@@ -77,22 +95,33 @@ class ComplexIntegration(Formula, ABC):
 class CIRL(ComplexIntegration, RectangleLeft):
     name = "Rectangle Left"
 
+    def solve(self):
+        self.value = sp.N(self._h * (self._w + self._f(self.values[0])))
+
 
 class CIRR(ComplexIntegration, RectangleRight):
     name = "Rectangle Right"
+
+    def solve(self):
+        self.value = sp.N(self._h * (self._w + self._f(self.values[-1])))
 
 
 class CIRM(ComplexIntegration, RectangleMid):
     name = "Rectangle Middle"
 
+    def solve(self):
+        self.value = sp.N(self._h * self._q)
+
 
 class CIT(ComplexIntegration, Trapeze):
     name = "Trapeze"
+
+    def solve(self):
+        self.value = sp.N(self._h / 2 * (self._z + 2 * self._w))
 
 
 class CIS(ComplexIntegration, Simpsons):
     name = "Simpson's"
 
-
-class CITE(ComplexIntegration, ThreeEighths):
-    name = "Three Eighths"
+    def solve(self):
+        self.value = sp.N(self._h / 6 * (self._z + 2 * self._w + 4 * self._q))

@@ -48,21 +48,26 @@ def solve_4_2(function, left, right, n):
     n = int(n)
     values = []
 
-    x_values = np.arange(start=left, stop=right + (right - left) / n, step=(right - left) / n)
+    h = (right - left) / n
+
+    x_values = [left + i * h for i in range(n + 1)]
     for x in x_values:
         values.append((sp.Number(x), f(sp.Number(x), function)))
     true_value = sp.integrate(function, (x_sym, left, right))
+
+    w = sp.N(sum(f(x, function) for x in x_values[1:-1]))
+    q = sp.N(sum(f(x + h / 2, function) for x in x_values[:-1]))
+    z = sp.N(f(x_values[0], function) + f(x_values[-1], function))
 
     res = {
         "points": [[float(x), float(y)] for x, y in values],
         "true_value": float(true_value),
         "approximation_by_method": [
-            CIRL(left, right, function, x_values, true_value).to_dict(),
-            CIRR(left, right, function, x_values, true_value).to_dict(),
-            CIRM(left, right, function, x_values, true_value).to_dict(),
-            CIT(left, right, function, x_values, true_value).to_dict(),
-            CIS(left, right, function, x_values, true_value).to_dict(),
-            CITE(left, right, function, x_values, true_value).to_dict(),
+            CIRL(left, right, function, x_values, true_value, h, w, q, z).to_dict(),
+            CIRR(left, right, function, x_values, true_value, h, w, q, z).to_dict(),
+            CIRM(left, right, function, x_values, true_value, h, w, q, z).to_dict(),
+            CIT(left, right, function, x_values, true_value, h, w, q, z).to_dict(),
+            CIS(left, right, function, x_values, true_value, h, w, q, z).to_dict(),
         ],
     }
 

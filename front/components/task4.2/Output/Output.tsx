@@ -13,18 +13,7 @@ const Output: React.FC<Props> = ({ output, isLoading }) => {
             {!isLoading && output && !("error" in output) && (
                 <>
                     <div className={styles.info}>
-                        <div className={styles.head}>
-                            <h4>Точки:</h4>
-                        </div>
-                        <div className={styles.body}>
-                            {output?.points.map((point, index) => (
-                                <div key={point[0]} className={styles.row}>
-                                    <span>{index + 1}</span>
-                                    <span>{point[0]}</span>
-                                    <span>{point[1]}</span>
-                                </div>
-                            ))}
-                        </div>
+                        <span>Настоящие значение: {output.true_value}</span>
                         <div className={styles.head}>
                             <span>Метод:</span>
                             <span>Значение:</span>
