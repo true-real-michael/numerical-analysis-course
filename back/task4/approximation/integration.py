@@ -94,6 +94,7 @@ class ComplexIntegration(Formula, ABC):
 
 class CIRL(ComplexIntegration, RectangleLeft):
     name = "Rectangle Left"
+    r = 1
 
     def solve(self):
         self.value = sp.N(self._h * (self._w + self._f(self.values[0])))
@@ -101,6 +102,7 @@ class CIRL(ComplexIntegration, RectangleLeft):
 
 class CIRR(ComplexIntegration, RectangleRight):
     name = "Rectangle Right"
+    r = 1
 
     def solve(self):
         self.value = sp.N(self._h * (self._w + self._f(self.values[-1])))
@@ -108,6 +110,7 @@ class CIRR(ComplexIntegration, RectangleRight):
 
 class CIRM(ComplexIntegration, RectangleMid):
     name = "Rectangle Middle"
+    r = 2
 
     def solve(self):
         self.value = sp.N(self._h * self._q)
@@ -115,6 +118,7 @@ class CIRM(ComplexIntegration, RectangleMid):
 
 class CIT(ComplexIntegration, Trapeze):
     name = "Trapeze"
+    r = 2
 
     def solve(self):
         self.value = sp.N(self._h / 2 * (self._z + 2 * self._w))
@@ -122,6 +126,7 @@ class CIT(ComplexIntegration, Trapeze):
 
 class CIS(ComplexIntegration, Simpsons):
     name = "Simpson's"
+    r = 4
 
     def solve(self):
         self.value = sp.N(self._h / 6 * (self._z + 2 * self._w + 4 * self._q))
