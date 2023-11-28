@@ -91,6 +91,7 @@ def solve_4_3(function, left, right, m, l):
 
     x_values = [left + i * h for i in range(m + 1)]
     xl_values = [left + i * hl for i in range(m * l + 1)]
+
     w = sp.N(sum(f(x, function) for x in x_values[1:-1]))
     wl = sp.N(sum(f(x, function) for x in xl_values[1:-1]))
     q = sp.N(sum(f(x + h / 2, function) for x in x_values[:-1]))
